@@ -1,7 +1,7 @@
 from django.db import models
 
 class Products(models.Model):
-    product_id = models.IntegerField()
+    product_id = models.IntegerField(primary_key=True)
     department = models.CharField(max_length=10)
     commodity = models.CharField(max_length=25)
     brand_type = models.CharField(max_length=10)
@@ -9,7 +9,7 @@ class Products(models.Model):
 
 
 class Households(models.Model):
-    hshd_id = models.IntegerField()
+    hshd_id = models.IntegerField(primary_key=True)
     loyalty = models.BooleanField()
     age_range = models.CharField(max_length=20)
     marital_status = models.CharField(max_length=10)
@@ -20,10 +20,10 @@ class Households(models.Model):
     children = models.CharField(max_length=3)
 
 class Transactions(models.Model):
-    hshd_id = models.IntegerField()
-    bskt_id = models.IntegerField()
+    hshd_id = models.ForeignKey('Households', on_delete=models.CASCADE)
+    bskt_id = models.IntegerField(primary_key=True)
     trans_date = models.DateField()
-    product_id = models.IntegerField()
+    product_id = models.ForeignKey('Products', on_delete=models.CASCADE)
     spend = models.FloatField()
     units = models.IntegerField()
     store_region = models.CharField(max_length=10)
