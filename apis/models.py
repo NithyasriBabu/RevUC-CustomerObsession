@@ -20,10 +20,10 @@ class Households(models.Model):
     children = models.CharField(max_length=3)
 
 class Transactions(models.Model):
-    hshd_id = models.ForeignKey('Households', on_delete=models.CASCADE)
-    bskt_id = models.IntegerField(primary_key=True)
-    trans_date = models.DateField()
-    product_id = models.ForeignKey('Products', on_delete=models.CASCADE)
+    hshd_id = models.IntegerField()
+    bskt_id = models.IntegerField()
+    trans_date = models.DateField(auto_now=True)
+    product_id = models.IntegerField()
     spend = models.FloatField()
     units = models.IntegerField()
     store_region = models.CharField(max_length=10)

@@ -9,7 +9,7 @@ products.DEPARTMENT = products.DEPARTMENT.str.strip()
 products.COMMODITY = products.COMMODITY.str.strip()
 products.ORGANIC = products.ORGANIC.map({'N':False, 'Y' : True})
 
-products.to_csv('data/5000_products_prosessed.csv',index=False)
+products.to_csv('data/5000_products_prosessed.csv',index=False,header=False)
 
 #%% Read Transactions
 tcols = { 'HSHD_ID': np.int32, 'BSKT_ID' : np.int32, 'DATE': str, 'PRODUCT_ID' : np.int32, 'SPEND' : np.float32,
@@ -18,7 +18,7 @@ tcols = { 'HSHD_ID': np.int32, 'BSKT_ID' : np.int32, 'DATE': str, 'PRODUCT_ID' :
 transactions = pd.read_csv('data/5000_transactions.csv',skiprows=[0],names=tcols.keys(), dtype= tcols)
 transactions.STORE_REGION = transactions.STORE_REGION.str.strip()
 
-transactions.to_csv('data/5000_transactions_prosessed.csv',index=False)
+transactions.to_csv('data/5000_transactions_prosessed.csv',index=False,header=False)
 
 #%% Read Households
 hcols = { 'HSHD_ID': np.int32, 'LOYALTY': str, 'AGE_RANGE': str, 'MARIAL_STATUS': str, 'INCOME_RANGE': str, 
@@ -62,4 +62,4 @@ households.INCOME_RANGE = households.INCOME_RANGE.map(income_labels)
 
 households.LOYALTY = households.LOYALTY.map({'N':False, 'Y' : True})
 
-households.to_csv('data/5000_households_prosessed.csv',index=False)
+households.to_csv('data/5000_households_prosessed.csv',index=False,header=False)
