@@ -39,7 +39,7 @@ households.CHILDREN = households.HH_SIZE.str.strip()
 households.AGE_RANGE.replace({'null': 'NA','NOT AVAILABLE': 'NA'},inplace=True)
 households.MARIAL_STATUS.replace({'null': 'NA','Unknown':'NA'},inplace=True)
 households.INCOME_RANGE.replace({'null': 'NA','nan':'NA'},inplace=True)
-households.HOMEOWNER.replace({'null': 'NA'},inplace=True)
+households.HOMEOWNER.replace({'null': 'NA','Unknown': 'NA'},inplace=True)
 households.HSHD_COMP.replace({'null': 'NA'},inplace=True)
 households.HH_SIZE.replace({'null': '0'},inplace=True)
 households.CHILDREN.replace({'NOT AVAILABLE': '0','nan': '0','null': '0'},inplace=True)
@@ -59,5 +59,7 @@ income_labels = {'UNDER 35K': 'LOW',
                  'NA': 'NA'}
 
 households.INCOME_RANGE = households.INCOME_RANGE.map(income_labels)
+
+households.LOYALTY = households.LOYALTY.map({'N':False, 'Y' : True})
 
 households.to_csv('data/5000_households_prosessed.csv',index=False)
